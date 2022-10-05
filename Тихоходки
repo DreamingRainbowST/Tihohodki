@@ -1,0 +1,52 @@
+BASE = "тихоход"
+START = 144846
+ADMIN_ID = 1128142884
+
+API_ID = 3915502
+API_HASH = "07676a4f853a9cddaf3b436e0fe9de82"
+BOT_TOKEN = "1556982843:AAGsCaq8XNERyabbQYhEIUpfSfQC9gAc9TA"
+from telethon.sync import TelegramClient, events
+import time
+
+client = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
+
+    
+def generator():
+    global START
+    global BASE
+    count = START
+    while True:
+        temp = str(count)
+        if temp[-1] == "1":
+            if len(temp) == 1:
+                manul = BASE + 'ка'
+            elif temp[-2] not in ["1"]:
+                manul = BASE + 'ка'
+            else: 
+                manul = BASE + "ок"
+                
+        elif temp[-1] in ["2", "3", "4"]:
+            if len(temp) == 1:
+                manul = BASE + "ки"
+            elif temp[-2] not in ["1"]:
+                manul = BASE + "ки"
+            else: 
+                manul = BASE + "ок"
+        else:
+            manul = BASE + "ок"
+        
+        count += 1
+        yield f"{count-1} {manul}"
+with client:
+    try:
+        client.send_message(ADMIN_ID, 'Начал свою работу')
+    except:
+        pass
+    for text in generator():
+        count = 0
+        client.send_message(CHANNEL_ID, text)
+        time.sleep(INTERVAL)
+        count += INTERVAL
+        if count >= 60:
+            time.sleep(INTERVAL_BIG)
+            count = 0
