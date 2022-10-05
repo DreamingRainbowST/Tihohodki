@@ -45,8 +45,8 @@ with client:
     for text in generator():
         count = 0
         client.send_message('ComputatisTardigrades', text)
-        time.sleep(INTERVAL)
-        count += INTERVAL
+        time.sleep(3)
+        count += 3
         if count >= 60:
-            time.sleep(INTERVAL_BIG)
+            time.sleep(30)
             count = 0
