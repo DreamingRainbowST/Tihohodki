@@ -39,7 +39,7 @@ def generator():
         yield f"{count-1} {manul}"
 with client:
     try:
-        client.send_message(ADMIN_ID, 'Начал свою работу')
+        client.send_message(ComputatisTardigrades, 'Начал свою работу')
     except:
         pass
     for text in generator():
