@@ -1,14 +1,20 @@
-BASE = "тихоход"
-START = 542676
-ADMIN_ID = 1128142884
-
-API_ID = 3915502
-API_HASH = "07676a4f853a9cddaf3b436e0fe9de82"
-BOT_TOKEN = "1556982843:AAGsCaq8XNERyabbQYhEIUpfSfQC9gAc9TA"
 from telethon.sync import TelegramClient, events
 import time
+import re
+API_ID = 2181066
+API_HASH = "8f95f37b847ada4f0150befe9eb27dbe"
+BOT_TOKEN = "1556982843:AAGsCaq8XNERyabbQYhEIUpfSfQC9gAc9TA"
 
-client = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
+client = TelegramClient('Acc', API_ID, API_HASH)
+bot = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
+CHANNEL_ID = "ComputatisTardigrades"
+INTERVAL = 60/20
+INTERVAL_BIG = 30
+BASE = "тихоход"
+
+START = 569001
+ADMIN_ID = 1128142884
+
 
     
 def generator():
@@ -37,14 +43,14 @@ def generator():
         
         count += 1
         yield f"{count-1} {manul}"
-with client:
+with bot:
     try:
-        client.send_message(ADMIN_ID, 'Начал свою работу')
+        bot.send_message(ADMIN_ID, 'Начал свою работу')
     except:
         pass
     for text in generator():
         count = 0
-        client.send_message('ComputatisTardigrades', text)
+        bot.send_message(CHANNEL_ID, text)
         time.sleep(3)
         count += 3
         if count >= 60:
